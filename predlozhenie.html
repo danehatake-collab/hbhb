@@ -1,0 +1,1273 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#0a0907">
+<title>Предложение для Вячеслава Цвета</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght,SOFT,WONK@9..144,300..900,0..100,0..1&family=Manrope:wght@300..800&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#0a0907;
+    --bg-2:#100d09;
+    --ink:#f5f1e8;
+    --ink-mute:#a39b8c;
+    --ink-dim:#6b6457;
+    --gold:#c9a961;
+    --gold-2:#e6c179;
+    --line:rgba(245,241,232,.07);
+    --line-2:rgba(245,241,232,.13);
+  }
+
+  *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+  body{
+    font-family:'Manrope',-apple-system,BlinkMacSystemFont,system-ui,sans-serif;
+    background:var(--bg);
+    color:var(--ink);
+    line-height:1.55;
+    overflow-x:hidden;
+    -webkit-font-smoothing:antialiased;
+    text-rendering:optimizeLegibility;
+    font-weight:400;
+  }
+  ::selection{background:var(--gold);color:var(--bg)}
+  a{color:inherit;text-decoration:none}
+  button{font-family:inherit;cursor:pointer;border:none;background:none;color:inherit}
+
+  /* ============ ATMOSPHERIC LAYER ============ */
+  .atm{
+    position:fixed;inset:0;
+    pointer-events:none;
+    z-index:0;
+    overflow:hidden;
+  }
+  .atm::before{
+    content:'';
+    position:absolute;
+    top:-30%;left:50%;
+    width:80vw;height:80vw;
+    transform:translateX(-50%);
+    background:radial-gradient(circle,rgba(201,169,97,.12) 0%,transparent 55%);
+    filter:blur(20px);
+  }
+  .atm::after{
+    content:'';
+    position:absolute;
+    inset:0;
+    background-image:
+      radial-gradient(circle at 20% 80%,rgba(201,169,97,.05) 0%,transparent 40%),
+      radial-gradient(circle at 80% 20%,rgba(201,169,97,.03) 0%,transparent 40%);
+  }
+  .grain{
+    position:fixed;inset:0;
+    z-index:1;
+    pointer-events:none;
+    opacity:.05;
+    mix-blend-mode:overlay;
+    background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='180' height='180'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/></filter><rect width='180' height='180' filter='url(%23n)' opacity='0.6'/></svg>");
+  }
+
+  /* ============ STICKY MARQUEE NAV ============ */
+  .topbar{
+    position:fixed;
+    top:0;left:0;right:0;
+    padding:14px 28px;
+    z-index:50;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    background:linear-gradient(180deg,rgba(10,9,7,.85) 0%,rgba(10,9,7,0) 100%);
+    backdrop-filter:blur(0);
+    transition:all .4s ease;
+  }
+  .topbar.scrolled{
+    background:rgba(10,9,7,.85);
+    backdrop-filter:blur(20px);
+    -webkit-backdrop-filter:blur(20px);
+    border-bottom:1px solid var(--line);
+  }
+  .topbar-left{
+    font-family:'Fraunces',serif;
+    font-size:14px;
+    font-weight:500;
+    letter-spacing:.02em;
+    color:var(--ink);
+  }
+  .topbar-left em{
+    font-style:italic;
+    color:var(--gold);
+    font-weight:400;
+  }
+  .topbar-right{
+    font-size:11px;
+    letter-spacing:.2em;
+    text-transform:uppercase;
+    color:var(--ink-mute);
+    font-weight:500;
+  }
+  @media(max-width:600px){
+    .topbar-right{display:none}
+    .topbar{padding:12px 18px}
+    .topbar-left{font-size:12px}
+  }
+
+  /* ============ LAYOUT ============ */
+  .wrap{
+    max-width:1100px;
+    margin:0 auto;
+    padding:0 28px;
+    position:relative;
+    z-index:2;
+  }
+  section{
+    padding:120px 0;
+    position:relative;
+  }
+  @media(max-width:768px){
+    section{padding:80px 0}
+    .wrap{padding:0 20px}
+  }
+
+  /* Section divider */
+  .divider{
+    height:1px;
+    background:linear-gradient(90deg,transparent 0%,var(--line-2) 50%,transparent 100%);
+    margin:0 28px;
+    position:relative;
+    z-index:2;
+  }
+
+  /* ============ TYPOGRAPHY ============ */
+  .display{
+    font-family:'Fraunces',serif;
+    font-weight:400;
+    letter-spacing:-0.025em;
+    line-height:.92;
+    font-variation-settings:"opsz" 144,"SOFT" 50,"WONK" 0;
+  }
+  .display em{
+    font-style:italic;
+    font-variation-settings:"opsz" 144,"SOFT" 100,"WONK" 1;
+    color:var(--gold);
+  }
+  .h-mega{
+    font-size:clamp(54px,12vw,156px);
+  }
+  .h-big{
+    font-size:clamp(40px,7vw,84px);
+  }
+  .h-med{
+    font-size:clamp(28px,4.5vw,48px);
+  }
+  .h-sml{
+    font-family:'Fraunces',serif;
+    font-size:clamp(22px,3vw,28px);
+    font-weight:500;
+    line-height:1.2;
+    letter-spacing:-.02em;
+  }
+  .lead{
+    font-size:clamp(17px,2.2vw,21px);
+    line-height:1.6;
+    color:var(--ink);
+    max-width:62ch;
+    font-weight:400;
+  }
+  .lead.mute{color:var(--ink-mute)}
+  p{
+    color:var(--ink-mute);
+    font-size:16px;
+    line-height:1.65;
+  }
+  .body-lg{
+    font-size:18px;
+    line-height:1.7;
+    color:var(--ink);
+    max-width:65ch;
+  }
+
+  /* Section number */
+  .sec-num{
+    display:flex;
+    align-items:center;
+    gap:14px;
+    margin-bottom:32px;
+    font-size:11px;
+    letter-spacing:.25em;
+    text-transform:uppercase;
+    color:var(--gold);
+    font-weight:600;
+  }
+  .sec-num::before{
+    content:'';
+    width:36px;height:1px;
+    background:var(--gold);
+  }
+
+  /* ============ HERO ============ */
+  .hero{
+    min-height:100vh;
+    display:flex;
+    align-items:center;
+    padding:140px 0 80px;
+    position:relative;
+  }
+  .hero-tag{
+    display:inline-flex;
+    align-items:center;
+    gap:10px;
+    font-size:11px;
+    letter-spacing:.25em;
+    text-transform:uppercase;
+    color:var(--ink-mute);
+    margin-bottom:48px;
+    font-weight:500;
+  }
+  .hero-tag::before{
+    content:'';
+    width:6px;height:6px;
+    border-radius:50%;
+    background:var(--gold);
+    box-shadow:0 0 12px var(--gold);
+    animation:beat 2.4s ease-in-out infinite;
+  }
+  @keyframes beat{
+    0%,100%{opacity:1;transform:scale(1)}
+    50%{opacity:.4;transform:scale(.7)}
+  }
+  .hero h1{
+    margin-bottom:48px;
+  }
+  .hero h1 span.line{
+    display:block;
+    overflow:hidden;
+  }
+  .hero h1 span.line > span{
+    display:inline-block;
+    transform:translateY(110%);
+    animation:reveal 1.1s cubic-bezier(.22,1,.36,1) forwards;
+  }
+  .hero h1 span.line:nth-of-type(1) > span{animation-delay:.15s}
+  .hero h1 span.line:nth-of-type(2) > span{animation-delay:.3s}
+  .hero h1 span.line:nth-of-type(3) > span{animation-delay:.45s}
+  @keyframes reveal{
+    to{transform:translateY(0)}
+  }
+  .hero-meta{
+    display:grid;
+    grid-template-columns:1fr;
+    gap:8px;
+    max-width:580px;
+    opacity:0;
+    transform:translateY(20px);
+    animation:fadeUp .9s .9s cubic-bezier(.22,1,.36,1) forwards;
+  }
+  @keyframes fadeUp{
+    to{opacity:1;transform:translateY(0)}
+  }
+  .hero-meta-row{
+    display:flex;
+    justify-content:space-between;
+    padding:18px 0;
+    border-bottom:1px solid var(--line);
+    font-size:14px;
+  }
+  .hero-meta-row span:first-child{
+    color:var(--ink-mute);
+    letter-spacing:.05em;
+    text-transform:uppercase;
+    font-size:11px;
+    font-weight:500;
+  }
+  .hero-meta-row span:last-child{
+    color:var(--ink);
+    font-family:'Fraunces',serif;
+    font-size:17px;
+    font-style:italic;
+  }
+  .hero-cta{
+    margin-top:56px;
+    display:flex;
+    flex-wrap:wrap;
+    gap:16px;
+    opacity:0;
+    transform:translateY(20px);
+    animation:fadeUp .9s 1.1s cubic-bezier(.22,1,.36,1) forwards;
+  }
+
+  /* Scroll indicator */
+  .scroll-indicator{
+    position:absolute;
+    bottom:40px;left:50%;
+    transform:translateX(-50%);
+    font-size:10px;
+    letter-spacing:.3em;
+    text-transform:uppercase;
+    color:var(--ink-dim);
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    gap:14px;
+    opacity:0;
+    animation:fadeUp .9s 1.5s forwards;
+  }
+  .scroll-indicator::after{
+    content:'';
+    width:1px;height:50px;
+    background:linear-gradient(180deg,var(--gold) 0%,transparent 100%);
+    animation:scrollLine 2.4s ease-in-out infinite;
+  }
+  @keyframes scrollLine{
+    0%{transform:scaleY(0);transform-origin:top}
+    50%{transform:scaleY(1);transform-origin:top}
+    50.01%{transform-origin:bottom}
+    100%{transform:scaleY(0);transform-origin:bottom}
+  }
+  @media(max-width:600px){
+    .scroll-indicator{display:none}
+  }
+
+  /* ============ BUTTONS ============ */
+  .btn{
+    display:inline-flex;
+    align-items:center;
+    gap:14px;
+    padding:18px 32px;
+    border-radius:0;
+    font-size:13px;
+    font-weight:600;
+    letter-spacing:.18em;
+    text-transform:uppercase;
+    transition:all .5s cubic-bezier(.2,.8,.2,1);
+    position:relative;
+    overflow:hidden;
+  }
+  .btn-primary{
+    background:var(--gold);
+    color:var(--bg);
+  }
+  .btn-primary::before{
+    content:'';
+    position:absolute;inset:0;
+    background:var(--gold-2);
+    transform:translateX(-100%);
+    transition:transform .5s cubic-bezier(.2,.8,.2,1);
+  }
+  .btn-primary:hover::before{
+    transform:translateX(0);
+  }
+  .btn-primary span{
+    position:relative;
+    z-index:1;
+  }
+  .btn-primary .arrow{
+    position:relative;
+    z-index:1;
+    transition:transform .4s ease;
+  }
+  .btn-primary:hover .arrow{
+    transform:translateX(6px);
+  }
+  .btn-ghost{
+    background:transparent;
+    color:var(--ink);
+    border:1px solid var(--line-2);
+  }
+  .btn-ghost:hover{
+    border-color:var(--gold);
+    color:var(--gold);
+  }
+
+  /* ============ PROLOGUE (personal note) ============ */
+  .prologue{
+    border-top:1px solid var(--line);
+    border-bottom:1px solid var(--line);
+  }
+  .prologue-content{
+    max-width:740px;
+    margin:0 auto;
+    text-align:center;
+  }
+  .prologue-mark{
+    font-family:'Fraunces',serif;
+    font-style:italic;
+    font-size:80px;
+    line-height:.5;
+    color:var(--gold);
+    margin-bottom:30px;
+    font-weight:400;
+  }
+  .prologue p{
+    font-family:'Fraunces',serif;
+    font-size:clamp(20px,3vw,28px);
+    line-height:1.5;
+    color:var(--ink);
+    font-weight:300;
+    font-style:italic;
+    letter-spacing:-.01em;
+  }
+  .prologue p strong{
+    font-style:normal;
+    font-weight:500;
+    color:var(--gold);
+    letter-spacing:0;
+  }
+  .prologue-sig{
+    margin-top:36px;
+    font-size:13px;
+    letter-spacing:.2em;
+    text-transform:uppercase;
+    color:var(--ink-mute);
+    font-weight:500;
+  }
+
+  /* ============ THE BET (3 numbers) ============ */
+  .bet-grid{
+    display:grid;
+    grid-template-columns:1fr;
+    gap:0;
+    margin-top:70px;
+    border-top:1px solid var(--line);
+  }
+  @media(min-width:768px){
+    .bet-grid{grid-template-columns:repeat(3,1fr)}
+  }
+  .bet-cell{
+    padding:48px 36px;
+    border-bottom:1px solid var(--line);
+    position:relative;
+    transition:background .4s ease;
+  }
+  @media(min-width:768px){
+    .bet-cell{
+      border-bottom:none;
+      border-right:1px solid var(--line);
+    }
+    .bet-cell:last-child{border-right:none}
+  }
+  .bet-cell:hover{
+    background:rgba(201,169,97,.025);
+  }
+  .bet-num{
+    font-family:'Fraunces',serif;
+    font-size:clamp(72px,12vw,140px);
+    line-height:.9;
+    color:var(--ink);
+    margin-bottom:20px;
+    letter-spacing:-.04em;
+    font-weight:300;
+    font-variation-settings:"opsz" 144,"SOFT" 30;
+  }
+  .bet-num em{
+    font-style:italic;
+    font-variation-settings:"opsz" 144,"SOFT" 100,"WONK" 1;
+    color:var(--gold);
+  }
+  .bet-num .small{
+    font-size:.45em;
+    color:var(--ink-mute);
+    letter-spacing:0;
+    margin-left:-.1em;
+  }
+  .bet-label{
+    font-size:11px;
+    letter-spacing:.25em;
+    text-transform:uppercase;
+    color:var(--gold);
+    margin-bottom:14px;
+    font-weight:600;
+  }
+  .bet-desc{
+    color:var(--ink-mute);
+    font-size:15px;
+    line-height:1.55;
+    max-width:30ch;
+  }
+
+  /* ============ ROADMAP ============ */
+  .roadmap{
+    margin-top:70px;
+    display:grid;
+    grid-template-columns:1fr;
+    gap:0;
+  }
+  .phase{
+    display:grid;
+    grid-template-columns:1fr;
+    gap:24px;
+    padding:48px 0;
+    border-top:1px solid var(--line);
+    transition:all .4s ease;
+    position:relative;
+  }
+  .phase:last-child{border-bottom:1px solid var(--line)}
+  @media(min-width:900px){
+    .phase{
+      grid-template-columns:160px 1fr 1.6fr;
+      gap:64px;
+      align-items:start;
+    }
+  }
+  .phase:hover .phase-num{
+    color:var(--gold);
+  }
+  .phase-num{
+    font-family:'Fraunces',serif;
+    font-size:clamp(40px,5vw,56px);
+    line-height:1;
+    color:var(--ink-dim);
+    transition:color .5s ease;
+    font-weight:300;
+    letter-spacing:-.02em;
+  }
+  .phase-meta{
+    display:flex;
+    flex-direction:column;
+    gap:8px;
+  }
+  .phase-period{
+    font-size:11px;
+    letter-spacing:.2em;
+    text-transform:uppercase;
+    color:var(--gold);
+    font-weight:600;
+  }
+  .phase-title{
+    font-family:'Fraunces',serif;
+    font-size:clamp(22px,3.5vw,30px);
+    line-height:1.15;
+    color:var(--ink);
+    font-weight:400;
+    letter-spacing:-.015em;
+  }
+  .phase-list{
+    list-style:none;
+    display:flex;
+    flex-direction:column;
+    gap:14px;
+  }
+  .phase-list li{
+    color:var(--ink-mute);
+    font-size:15.5px;
+    line-height:1.55;
+    padding-left:24px;
+    position:relative;
+  }
+  .phase-list li::before{
+    content:'';
+    position:absolute;
+    left:0;top:11px;
+    width:10px;height:1px;
+    background:var(--gold);
+  }
+
+  /* ============ THE WORK (services) ============ */
+  .work-intro{
+    display:grid;
+    grid-template-columns:1fr;
+    gap:60px;
+    margin-bottom:80px;
+  }
+  @media(min-width:900px){
+    .work-intro{grid-template-columns:1fr 1.2fr;gap:100px;align-items:end}
+  }
+  .work-grid{
+    display:grid;
+    grid-template-columns:1fr;
+    border-top:1px solid var(--line);
+    border-left:1px solid var(--line);
+  }
+  @media(min-width:600px){
+    .work-grid{grid-template-columns:repeat(2,1fr)}
+  }
+  @media(min-width:1000px){
+    .work-grid{grid-template-columns:repeat(3,1fr)}
+  }
+  .work-cell{
+    padding:36px 32px;
+    border-right:1px solid var(--line);
+    border-bottom:1px solid var(--line);
+    position:relative;
+    transition:all .4s ease;
+    overflow:hidden;
+  }
+  .work-cell::before{
+    content:'';
+    position:absolute;
+    top:0;left:0;
+    width:0;height:1px;
+    background:var(--gold);
+    transition:width .6s cubic-bezier(.2,.8,.2,1);
+  }
+  .work-cell:hover{
+    background:rgba(201,169,97,.025);
+  }
+  .work-cell:hover::before{
+    width:100%;
+  }
+  .work-cell:hover .work-num{
+    color:var(--gold);
+  }
+  .work-num{
+    font-family:'Fraunces',serif;
+    font-style:italic;
+    font-size:14px;
+    color:var(--ink-dim);
+    margin-bottom:18px;
+    letter-spacing:.02em;
+    transition:color .4s ease;
+  }
+  .work-title{
+    font-family:'Fraunces',serif;
+    font-size:22px;
+    color:var(--ink);
+    font-weight:500;
+    line-height:1.2;
+    margin-bottom:12px;
+    letter-spacing:-.015em;
+  }
+  .work-desc{
+    color:var(--ink-mute);
+    font-size:14.5px;
+    line-height:1.55;
+  }
+
+  /* ============ THE MATH ============ */
+  .math-frame{
+    margin-top:70px;
+    border:1px solid var(--line-2);
+    background:linear-gradient(180deg,rgba(245,241,232,.015) 0%,rgba(201,169,97,.025) 100%);
+    padding:clamp(32px,5vw,64px);
+    position:relative;
+  }
+  .math-frame::before{
+    content:'';
+    position:absolute;
+    top:0;left:0;right:0;
+    height:1px;
+    background:linear-gradient(90deg,transparent 0%,var(--gold) 50%,transparent 100%);
+  }
+  .math-header{
+    display:flex;
+    flex-wrap:wrap;
+    justify-content:space-between;
+    align-items:end;
+    gap:24px;
+    margin-bottom:48px;
+    padding-bottom:32px;
+    border-bottom:1px solid var(--line);
+  }
+  .math-header-title{
+    font-family:'Fraunces',serif;
+    font-size:clamp(24px,3.5vw,32px);
+    color:var(--ink);
+    font-weight:400;
+    line-height:1.2;
+    letter-spacing:-.02em;
+  }
+  .math-header-meta{
+    font-size:11px;
+    letter-spacing:.25em;
+    text-transform:uppercase;
+    color:var(--gold);
+    font-weight:600;
+  }
+  .math-grid{
+    display:grid;
+    grid-template-columns:1fr;
+    gap:0;
+  }
+  @media(min-width:700px){
+    .math-grid{grid-template-columns:1fr 1fr}
+  }
+  .math-row{
+    display:flex;
+    align-items:baseline;
+    justify-content:space-between;
+    padding:28px 0;
+    border-bottom:1px solid var(--line);
+    gap:24px;
+    transition:background .3s ease;
+  }
+  @media(min-width:700px){
+    .math-row{
+      padding:28px 32px;
+    }
+    .math-row:nth-child(odd){
+      border-right:1px solid var(--line);
+    }
+  }
+  .math-row:hover{background:rgba(201,169,97,.02)}
+  .math-row:nth-last-child(-n+2){border-bottom:none}
+  @media(max-width:699px){
+    .math-row:last-child{border-bottom:none}
+  }
+  .math-label{
+    font-size:13px;
+    color:var(--ink-mute);
+    line-height:1.4;
+    flex:1;
+    letter-spacing:.01em;
+  }
+  .math-value{
+    font-family:'Fraunces',serif;
+    font-size:clamp(28px,4vw,42px);
+    font-weight:400;
+    color:var(--gold);
+    line-height:1;
+    white-space:nowrap;
+    letter-spacing:-.02em;
+  }
+  .math-value em{
+    font-size:.55em;
+    color:var(--ink-mute);
+    font-style:normal;
+    margin-left:4px;
+  }
+  .math-foot{
+    margin-top:32px;
+    padding-top:24px;
+    border-top:1px solid var(--line);
+    font-size:13px;
+    color:var(--ink-dim);
+    line-height:1.6;
+    font-style:italic;
+    font-family:'Fraunces',serif;
+  }
+
+  /* ============ THE DEAL ============ */
+  .deal-block{
+    margin-top:70px;
+    text-align:center;
+    position:relative;
+  }
+  .deal-percent{
+    font-family:'Fraunces',serif;
+    font-size:clamp(140px,30vw,360px);
+    line-height:.85;
+    color:var(--ink);
+    font-weight:300;
+    letter-spacing:-.05em;
+    background:linear-gradient(180deg,var(--ink) 0%,var(--gold) 50%,var(--ink) 100%);
+    background-size:100% 200%;
+    -webkit-background-clip:text;
+    -webkit-text-fill-color:transparent;
+    background-clip:text;
+    animation:goldShift 8s ease-in-out infinite;
+    font-variation-settings:"opsz" 144,"SOFT" 30;
+    position:relative;
+  }
+  @keyframes goldShift{
+    0%,100%{background-position:0% 0%}
+    50%{background-position:0% 100%}
+  }
+  .deal-percent em{
+    font-style:italic;
+    font-variation-settings:"opsz" 144,"SOFT" 100,"WONK" 1;
+  }
+  .deal-sub{
+    font-family:'Fraunces',serif;
+    font-size:clamp(20px,3vw,28px);
+    color:var(--ink);
+    font-weight:300;
+    font-style:italic;
+    margin-bottom:36px;
+    letter-spacing:-.01em;
+  }
+  .deal-explain{
+    max-width:660px;
+    margin:0 auto;
+    color:var(--ink-mute);
+    font-size:17px;
+    line-height:1.7;
+  }
+  .deal-explain strong{
+    color:var(--ink);
+    font-weight:500;
+  }
+  .deal-pillars{
+    display:grid;
+    grid-template-columns:1fr;
+    gap:0;
+    margin-top:80px;
+    border-top:1px solid var(--line);
+  }
+  @media(min-width:768px){
+    .deal-pillars{grid-template-columns:repeat(3,1fr)}
+  }
+  .pillar{
+    padding:36px 28px;
+    text-align:left;
+    border-bottom:1px solid var(--line);
+    transition:background .4s ease;
+  }
+  @media(min-width:768px){
+    .pillar{
+      border-bottom:none;
+      border-right:1px solid var(--line);
+    }
+    .pillar:last-child{border-right:none}
+  }
+  .pillar:hover{
+    background:rgba(201,169,97,.025);
+  }
+  .pillar-num{
+    font-family:'Fraunces',serif;
+    font-style:italic;
+    color:var(--gold);
+    font-size:14px;
+    margin-bottom:14px;
+  }
+  .pillar-title{
+    font-family:'Fraunces',serif;
+    font-size:20px;
+    color:var(--ink);
+    margin-bottom:10px;
+    font-weight:500;
+    letter-spacing:-.01em;
+  }
+  .pillar-text{
+    color:var(--ink-mute);
+    font-size:14.5px;
+    line-height:1.6;
+  }
+
+  /* ============ FINAL CTA ============ */
+  .final{
+    text-align:center;
+    padding:140px 28px;
+    border-top:1px solid var(--line);
+    background:radial-gradient(ellipse at top,rgba(201,169,97,.06) 0%,transparent 60%);
+  }
+  .final h2{
+    margin-bottom:36px;
+  }
+  .final-text{
+    max-width:600px;
+    margin:0 auto 56px;
+    font-size:clamp(17px,2.5vw,21px);
+    line-height:1.65;
+    color:var(--ink-mute);
+  }
+  .final-pp{
+    margin-top:80px;
+    padding-top:48px;
+    border-top:1px solid var(--line);
+    max-width:540px;
+    margin-left:auto;
+    margin-right:auto;
+    color:var(--ink-dim);
+    font-style:italic;
+    font-family:'Fraunces',serif;
+    font-size:15px;
+    line-height:1.6;
+  }
+  .final-pp::before{
+    content:'P.S.';
+    display:block;
+    font-style:normal;
+    font-size:11px;
+    letter-spacing:.3em;
+    text-transform:uppercase;
+    color:var(--gold);
+    margin-bottom:14px;
+    font-family:'Manrope',sans-serif;
+  }
+
+  /* ============ FOOTER ============ */
+  footer{
+    padding:40px 28px;
+    text-align:center;
+    border-top:1px solid var(--line);
+    color:var(--ink-dim);
+    font-size:11px;
+    letter-spacing:.2em;
+    text-transform:uppercase;
+  }
+
+  /* ============ SCROLL REVEAL ============ */
+  .reveal{
+    opacity:0;
+    transform:translateY(30px);
+    transition:opacity 1s cubic-bezier(.22,1,.36,1),transform 1s cubic-bezier(.22,1,.36,1);
+  }
+  .reveal.in{
+    opacity:1;
+    transform:translateY(0);
+  }
+  .reveal.delay-1{transition-delay:.15s}
+  .reveal.delay-2{transition-delay:.3s}
+  .reveal.delay-3{transition-delay:.45s}
+
+  /* Counter cells stagger */
+  .bet-cell.reveal:nth-child(1){transition-delay:.1s}
+  .bet-cell.reveal:nth-child(2){transition-delay:.25s}
+  .bet-cell.reveal:nth-child(3){transition-delay:.4s}
+
+  .work-cell.reveal:nth-child(1){transition-delay:.05s}
+  .work-cell.reveal:nth-child(2){transition-delay:.12s}
+  .work-cell.reveal:nth-child(3){transition-delay:.19s}
+  .work-cell.reveal:nth-child(4){transition-delay:.26s}
+  .work-cell.reveal:nth-child(5){transition-delay:.33s}
+  .work-cell.reveal:nth-child(6){transition-delay:.4s}
+  .work-cell.reveal:nth-child(7){transition-delay:.47s}
+  .work-cell.reveal:nth-child(8){transition-delay:.54s}
+  .work-cell.reveal:nth-child(9){transition-delay:.61s}
+
+  @media (prefers-reduced-motion: reduce){
+    *,*::before,*::after{
+      animation-duration:.01ms !important;
+      transition-duration:.01ms !important;
+    }
+    .reveal{opacity:1;transform:none}
+    .hero h1 span.line > span{transform:none;animation:none}
+  }
+
+  @media(max-width:600px){
+    .btn{width:100%;justify-content:center;padding:18px 24px}
+    .hero-cta{flex-direction:column}
+  }
+</style>
+</head>
+<body>
+
+<div class="atm"></div>
+<div class="grain"></div>
+
+<!-- ============ TOPBAR ============ -->
+<nav class="topbar" id="topbar">
+  <div class="topbar-left">Предложение для <em>Вячеслава Цвета</em></div>
+  <div class="topbar-right">Конфиденциально</div>
+</nav>
+
+<!-- ============ HERO ============ -->
+<section class="hero">
+  <div class="wrap">
+    <div class="hero-tag">Продюсерское предложение · 2026</div>
+
+    <h1 class="display h-mega">
+      <span class="line"><span>Полтора месяца —</span></span>
+      <span class="line"><span>и твой блог</span></span>
+      <span class="line"><span><em>начнёт</em> платить.</span></span>
+    </h1>
+
+    <div class="hero-meta">
+      <div class="hero-meta-row">
+        <span>Срок до запуска</span>
+        <span>6 недель</span>
+      </div>
+      <div class="hero-meta-row">
+        <span>Моя комиссия</span>
+        <span>40% от выручки</span>
+      </div>
+      <div class="hero-meta-row">
+        <span>Предоплата</span>
+        <span>0 ₽</span>
+      </div>
+    </div>
+
+    <div class="hero-cta">
+      <a href="#deal" class="btn btn-primary">
+        <span>К условиям</span>
+        <svg class="arrow" width="14" height="10" viewBox="0 0 14 10" fill="none">
+          <path d="M1 5h12m0 0L9 1m4 4L9 9" stroke="currentColor" stroke-width="1.5" stroke-linecap="square"/>
+        </svg>
+      </a>
+      <a href="#plan" class="btn btn-ghost">План работы</a>
+    </div>
+  </div>
+  <div class="scroll-indicator">Листай</div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ============ PROLOGUE — personal note ============ -->
+<section class="prologue">
+  <div class="wrap">
+    <div class="prologue-content reveal">
+      <div class="prologue-mark">«</div>
+      <p>
+        Вячеслав, давай без воды. У тебя есть то, что 99% людей в нише отношений не имеют — <strong>вирусный охват и авторская позиция</strong>. Дальше — вопрос инфраструктуры. Воронки, продукта, команды. Это та часть, в которой эксперту работать не нужно. Это моя часть. Я беру её на себя — со всеми рисками — за долю от результата.
+      </p>
+      <div class="prologue-sig">— Твой будущий продюсер</div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ============ 01 — THE BET ============ -->
+<section>
+  <div class="wrap">
+    <div class="reveal">
+      <div class="sec-num">01 — Ставка</div>
+      <h2 class="display h-big">
+        Три цифры, которые<br>описывают сделку.
+      </h2>
+    </div>
+
+    <div class="bet-grid">
+      <div class="bet-cell reveal">
+        <div class="bet-label">Срок</div>
+        <div class="bet-num">1.<em>5</em><span class="small"> мес</span></div>
+        <div class="bet-desc">От подписания до закрытия первого окна продаж. Не «когда-нибудь», а с понятной датой релиза.</div>
+      </div>
+      <div class="bet-cell reveal">
+        <div class="bet-label">Комиссия</div>
+        <div class="bet-num"><em>40</em>%</div>
+        <div class="bet-desc">От чистой выручки запуска. Зарабатываю только когда зарабатываешь ты. Без абонентки и предоплат.</div>
+      </div>
+      <div class="bet-cell reveal">
+        <div class="bet-label">Твой риск</div>
+        <div class="bet-num">0<span class="small"> ₽</span></div>
+        <div class="bet-desc">Команда, трафик, разработка, инфраструктура — внутри моей доли. Ты вкладываешь только экспертизу и время на эфиры.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ============ 02 — THE PLAN ============ -->
+<section id="plan">
+  <div class="wrap">
+    <div class="reveal">
+      <div class="sec-num">02 — План</div>
+      <h2 class="display h-big">
+        Как мы пройдём<br><em>эти шесть недель.</em>
+      </h2>
+      <p class="lead mute" style="margin-top:36px">
+        Это не таблица из 80 задач. Это четыре маяка, к которым мы движемся. Внутри каждой фазы — гибкий продакшн в режиме спринтов и адаптация под то, что делает аудитория.
+      </p>
+    </div>
+
+    <div class="roadmap">
+      <article class="phase reveal">
+        <div class="phase-num">01</div>
+        <div class="phase-meta">
+          <div class="phase-period">Неделя 1–2</div>
+          <h3 class="phase-title">Фундамент: стратегия и упаковка</h3>
+        </div>
+        <ul class="phase-list">
+          <li>Глубинное интервью: миссия, метод, идеальный клиент.</li>
+          <li>Архитектура линейки продуктов и ценовая модель.</li>
+          <li>Финансовая модель запуска и точки окупаемости.</li>
+          <li>Прокачка Telegram-канала, разработка бот-воронки.</li>
+          <li>Создание лид-магнита, который реально цепляет.</li>
+        </ul>
+      </article>
+
+      <article class="phase reveal">
+        <div class="phase-num">02</div>
+        <div class="phase-meta">
+          <div class="phase-period">Неделя 3–4</div>
+          <h3 class="phase-title">Прогрев: контент-конвейер и прелонч</h3>
+        </div>
+        <ul class="phase-list">
+          <li>Reels-конвейер: 3–5 видео в день под чёткие KPI.</li>
+          <li>Параллельно — производство курса и материалов.</li>
+          <li>Платный посев и коллаборации для масштабирования.</li>
+          <li>Цель — собрать 3 000–5 000 человек в Telegram.</li>
+          <li>Серия открытых эфиров для формирования спроса.</li>
+        </ul>
+      </article>
+
+      <article class="phase reveal">
+        <div class="phase-num">03</div>
+        <div class="phase-meta">
+          <div class="phase-period">Неделя 5</div>
+          <h3 class="phase-title">Trust bridge: платный мини-челлендж</h3>
+        </div>
+        <ul class="phase-list">
+          <li>Трёхдневный платный челлендж: 990 ₽ на входе.</li>
+          <li>200–500 участников = быстрая отбивка трафика.</li>
+          <li>Доходимость 70–80% — в разы выше курсов.</li>
+          <li>Внутри челленджа — анонс курса с ранней ценой.</li>
+          <li>Сбор тёплых заявок и переход в основное окно продаж.</li>
+        </ul>
+      </article>
+
+      <article class="phase reveal">
+        <div class="phase-num">04</div>
+        <div class="phase-meta">
+          <div class="phase-period">Неделя 6</div>
+          <h3 class="phase-title">Окно продаж и переход в клуб</h3>
+        </div>
+        <ul class="phase-list">
+          <li>5–7 дней активных продаж основного курса.</li>
+          <li>Дожимы: ежедневные эфиры, FAQ, отзывы, разборы.</li>
+          <li>Закрытие потока, первая выручка по контракту.</li>
+          <li>Презентация подписочного клуба для выпускников.</li>
+          <li>Перевод в recurring revenue — фундамент следующего года.</li>
+        </ul>
+      </article>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ============ 03 — THE WORK ============ -->
+<section>
+  <div class="wrap">
+    <div class="reveal">
+      <div class="sec-num">03 — Работа</div>
+    </div>
+
+    <div class="work-intro">
+      <h2 class="display h-big reveal">
+        Что я<br>забираю<br>на себя.
+      </h2>
+      <p class="body-lg reveal delay-1">
+        Семь направлений, семь зон ответственности. Я и моя команда закрываем 95% производства. Ты остаёшься в сильной позиции эксперта: твоё дело — экспертиза, контент, эфиры. Всё остальное — на нас.
+      </p>
+    </div>
+
+    <div class="work-grid">
+      <div class="work-cell reveal">
+        <div class="work-num">i.</div>
+        <h3 class="work-title">Стратегия запуска</h3>
+        <p class="work-desc">Архитектура воронки от вирусного Reels до подписочного клуба. Вся механика на одной карте.</p>
+      </div>
+      <div class="work-cell reveal">
+        <div class="work-num">ii.</div>
+        <h3 class="work-title">Упаковка эксперта</h3>
+        <p class="work-desc">Флагманское обещание, линейка продуктов, ценовая модель, тарифы и оффер.</p>
+      </div>
+      <div class="work-cell reveal">
+        <div class="work-num">iii.</div>
+        <h3 class="work-title">Контент-стратегия</h3>
+        <p class="work-desc">Сценарии, хуки, CTA. Reels-конвейер — три–пять единиц контента ежедневно.</p>
+      </div>
+      <div class="work-cell reveal">
+        <div class="work-num">iv.</div>
+        <h3 class="work-title">Бот-воронка</h3>
+        <p class="work-desc">Telegram-бот с прогревом, сегментацией и автопродажами. Главный актив на годы.</p>
+      </div>
+      <div class="work-cell reveal">
+        <div class="work-num">v.</div>
+        <h3 class="work-title">Лендинг и техника</h3>
+        <p class="work-desc">Продающий лендинг, платёжный контур, обучающая платформа — всё под ключ.</p>
+      </div>
+      <div class="work-cell reveal">
+        <div class="work-num">vi.</div>
+        <h3 class="work-title">Платный челлендж</h3>
+        <p class="work-desc">Trust bridge перед основным запуском — на нём конверсия в курс кратно выше.</p>
+      </div>
+      <div class="work-cell reveal">
+        <div class="work-num">vii.</div>
+        <h3 class="work-title">Запуск клуба</h3>
+        <p class="work-desc">Архитектура подписочного сообщества и retention-механики на recurring revenue.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ============ 04 — THE DEAL ============ -->
+<section id="deal">
+  <div class="wrap">
+    <div class="reveal" style="text-align:center">
+      <div class="sec-num" style="justify-content:center">04 — Сделка</div>
+      <h2 class="display h-big">
+        Условия<br>сотрудничества.
+      </h2>
+    </div>
+
+    <div class="deal-block reveal delay-1">
+      <div class="deal-percent"><em>40</em>%</div>
+      <div class="deal-sub">от чистой выручки запуска</div>
+      <p class="deal-explain">
+        Без предоплаты за стратегию. Без абонентки. Без скрытых пунктов. Я зарабатываю только тогда, когда зарабатываешь ты — это значит, что я работаю на максимум, а не на отчёт. <strong>Все расходы на трафик, технику и команду — внутри моей доли.</strong> Ты получаешь готовую систему под ключ и 60% выручки.
+      </p>
+    </div>
+
+    <div class="deal-pillars">
+      <div class="pillar reveal">
+        <div class="pillar-num">i.</div>
+        <h4 class="pillar-title">Кожа в игре</h4>
+        <p class="pillar-text">Не получу ни рубля, если запуск не состоится. Это значит — работаю на результат, а не на красивые отчёты.</p>
+      </div>
+      <div class="pillar reveal delay-1">
+        <div class="pillar-num">ii.</div>
+        <h4 class="pillar-title">Команда — моя</h4>
+        <p class="pillar-text">Сценаристы, разработчик бота, дизайнер — всех веду и оплачиваю я.</p>
+      </div>
+      <div class="pillar reveal delay-2">
+        <div class="pillar-num">iii.</div>
+        <h4 class="pillar-title">Прозрачность</h4>
+        <p class="pillar-text">Все продажи через единую CRM. Цифры в реальном времени. Расчёт после каждого окна продаж — без задержек.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FINAL CTA ============ -->
+<section class="final">
+  <div class="wrap">
+    <h2 class="display h-big reveal">
+      Один разговор —<br>и решение принято.
+    </h2>
+    <p class="final-text reveal delay-1">
+      У нас полтора месяца до запуска. Если решение принимаем на этой неделе — успеваем сделать всё системно. Если откладываем — теряем тот импульс, который у тебя сейчас даёт виральный контент.
+    </p>
+    <div class="reveal delay-2" style="display:flex;justify-content:center;flex-wrap:wrap;gap:16px">
+      <a href="https://t.me/danyaizmailov" target="_blank" rel="noopener" class="btn btn-primary">
+        <span>Написать в Telegram</span>
+        <svg class="arrow" width="14" height="10" viewBox="0 0 14 10" fill="none">
+          <path d="M1 5h12m0 0L9 1m4 4L9 9" stroke="currentColor" stroke-width="1.5" stroke-linecap="square"/>
+        </svg>
+      </a>
+    </div>
+    <p class="final-pp reveal delay-3">
+      Тридцать минут разговора — и ты сам поймёшь, твоё это или нет. Без давления, без абонентских платежей, без обязательств после звонка.
+    </p>
+  </div>
+</section>
+
+<footer>
+  Конфиденциальное предложение · 2026
+</footer>
+
+<script>
+  // Topbar background on scroll
+  const topbar = document.getElementById('topbar');
+  let lastScrollY = 0;
+  window.addEventListener('scroll', () => {
+    if (window.scrollY > 40) topbar.classList.add('scrolled');
+    else topbar.classList.remove('scrolled');
+  }, { passive: true });
+
+  // Reveal observer
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('in');
+        io.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.12, rootMargin: '0px 0px -60px 0px' });
+
+  document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+
+  // Smooth anchor scroll
+  document.querySelectorAll('a[href^="#"]').forEach(a => {
+    a.addEventListener('click', function(e){
+      const id = this.getAttribute('href');
+      if (id === '#') return;
+      const target = document.querySelector(id);
+      if (target) {
+        e.preventDefault();
+        const top = target.getBoundingClientRect().top + window.pageYOffset - 20;
+        window.scrollTo({ top, behavior: 'smooth' });
+      }
+    });
+  });
+</script>
+
+</body>
+</html>
